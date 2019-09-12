@@ -9,6 +9,8 @@ class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * Es como GET (o READ?)
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,24 +83,40 @@ class MovieController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * 
+     * Es lo mismo que PUT (EDIT)
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Movie  $movie
+     * @param  \App\Movie  $movie_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(Request $request, $movie_id)
     {
-        echo "Hi from update";
+        //echo "Hi from update";
+
+        $movie = Movie::find($movie_id);
+        $movie->title = $request->input('title');
+        $movie->description = $request->input('description');
+        $movie->genre = $request->input('genre');
+        $movie->year = $request->input('year');
+        $movie->duration = $request->input('duration');
+        $movie->save();
+        echo json_encode($movie);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Movie  $movie
+     * @param  \App\Movie  $movie_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy($movie_id)
     {
-        //
+        // echo "Hi from destroy";
+        $movie = Movie::find($movie_id);
+        $movie->delete();
+        $movies = Movie::get();
+        echo json_encode($movies);
+
     }
 }
