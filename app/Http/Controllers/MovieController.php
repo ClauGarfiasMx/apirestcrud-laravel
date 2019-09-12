@@ -84,7 +84,7 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      * 
-     * Es lo mismo que PUT (EDIT)
+     * Es lo mismo que PUT (edit)
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Movie  $movie_id
@@ -106,6 +106,8 @@ class MovieController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * Esto es DELETE
      *
      * @param  \App\Movie  $movie_id
      * @return \Illuminate\Http\Response
