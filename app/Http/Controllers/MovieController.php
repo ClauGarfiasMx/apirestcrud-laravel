@@ -14,7 +14,9 @@ class MovieController extends Controller
      */
     public function index()
     {
-        echo "hello";
+        // echo "hello";
+        $movies = Movie::get();
+        echo json_encode($movies);
        
     }
 
@@ -39,20 +41,16 @@ class MovieController extends Controller
     public function store(Request $request)
     {
     //    echo "Hi from store";
-        print_r($request->all());
+    //     print_r($request->all());
 
         $movie = new Movie();
-        $movie->title = $request->input( key:'title');
-        $movie->description = $request->input( key:'description');
-        $movie->genre = $request->input( key:'genre');
-        $movie->year = $request->input( key:'year');
-        $movie->duration = $request->input( key:'duration');
+        $movie->title = $request->input('title');
+        $movie->description = $request->input('description');
+        $movie->genre = $request->input('genre');
+        $movie->year = $request->input('year');
+        $movie->duration = $request->input('duration');
         $movie->save();
         echo json_encode($movie);
-
-
-
-
     }
     
 
